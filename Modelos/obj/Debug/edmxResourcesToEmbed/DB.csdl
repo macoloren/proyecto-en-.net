@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pruebaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Carro">
+    <Key>
+      <PropertyRef Name="CarroId" />
+    </Key>
+    <Property Name="CarroId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Placa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Modelo" Type="Int32" />
+    <Property Name="MarcaId" Type="Int32" />
+    <Property Name="ClienteId" Type="Int32" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Activo" Type="Int32" />
+    <NavigationProperty Name="Carro_CarWash" Relationship="Self.FK_Carro_CarWash_Carro" FromRole="Carro" ToRole="Carro_CarWash" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_Carro_Cliente" FromRole="Carro" ToRole="Cliente" />
+    <NavigationProperty Name="Marca" Relationship="Self.FK_Carro_Marca" FromRole="Carro" ToRole="Marca" />
+    <NavigationProperty Name="Carro_Servicio" Relationship="Self.FK_Carro_Servicio_Carro" FromRole="Carro" ToRole="Carro_Servicio" />
+  </EntityType>
+  <EntityType Name="Carro_CarWash">
+    <Key>
+      <PropertyRef Name="CarWashId" />
+    </Key>
+    <Property Name="CarWashId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarroId" Type="Int32" />
+    <Property Name="precio" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Carro" Relationship="Self.FK_Carro_CarWash_Carro" FromRole="Carro_CarWash" ToRole="Carro" />
+  </EntityType>
+  <EntityType Name="Carro_Servicio">
+    <Key>
+      <PropertyRef Name="ServicioID" />
+    </Key>
+    <Property Name="ServicioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarroId" Type="Int32" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="FechaHoraIngreso" Type="DateTime" Precision="3" />
+    <Property Name="ObservacionesEstado1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ObservacionesEstado2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ObservacionesEstado3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ObservacionesEstado4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Carro" Relationship="Self.FK_Carro_Servicio_Carro" FromRole="Carro_Servicio" ToRole="Carro" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="ClienteId" />
+    </Key>
+    <Property Name="ClienteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCompleto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TelefonoCelular" Type="Int32" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Activo" Type="Int32" />
+    <NavigationProperty Name="Carro" Relationship="Self.FK_Carro_Cliente" FromRole="Cliente" ToRole="Carro" />
+  </EntityType>
+  <EntityType Name="Marca">
+    <Key>
+      <PropertyRef Name="MarcaId" />
+    </Key>
+    <Property Name="MarcaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Activo" Type="Int32" />
+    <NavigationProperty Name="Carro" Relationship="Self.FK_Carro_Marca" FromRole="Marca" ToRole="Carro" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Carro_CarWash_Carro">
+    <End Role="Carro" Type="Self.Carro" Multiplicity="0..1" />
+    <End Role="Carro_CarWash" Type="Self.Carro_CarWash" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carro">
+        <PropertyRef Name="CarroId" />
+      </Principal>
+      <Dependent Role="Carro_CarWash">
+        <PropertyRef Name="CarroId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carro_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="Carro" Type="Self.Carro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="ClienteId" />
+      </Principal>
+      <Dependent Role="Carro">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carro_Marca">
+    <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+    <End Role="Carro" Type="Self.Carro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marca">
+        <PropertyRef Name="MarcaId" />
+      </Principal>
+      <Dependent Role="Carro">
+        <PropertyRef Name="MarcaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carro_Servicio_Carro">
+    <End Role="Carro" Type="Self.Carro" Multiplicity="0..1" />
+    <End Role="Carro_Servicio" Type="Self.Carro_Servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carro">
+        <PropertyRef Name="CarroId" />
+      </Principal>
+      <Dependent Role="Carro_Servicio">
+        <PropertyRef Name="CarroId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="pruebaDBEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Carro" EntityType="Self.Carro" />
+    <EntitySet Name="Carro_CarWash" EntityType="Self.Carro_CarWash" />
+    <EntitySet Name="Carro_Servicio" EntityType="Self.Carro_Servicio" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="Marca" EntityType="Self.Marca" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Carro_CarWash_Carro" Association="Self.FK_Carro_CarWash_Carro">
+      <End Role="Carro" EntitySet="Carro" />
+      <End Role="Carro_CarWash" EntitySet="Carro_CarWash" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carro_Cliente" Association="Self.FK_Carro_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Carro" EntitySet="Carro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carro_Marca" Association="Self.FK_Carro_Marca">
+      <End Role="Marca" EntitySet="Marca" />
+      <End Role="Carro" EntitySet="Carro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carro_Servicio_Carro" Association="Self.FK_Carro_Servicio_Carro">
+      <End Role="Carro" EntitySet="Carro" />
+      <End Role="Carro_Servicio" EntitySet="Carro_Servicio" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

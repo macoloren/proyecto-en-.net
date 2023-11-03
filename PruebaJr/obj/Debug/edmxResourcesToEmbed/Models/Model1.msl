@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="pruebaDBModelStoreContainer" CdmEntityContainer="baseDBEntities">
+    <EntitySetMapping Name="Carro">
+      <EntityTypeMapping TypeName="pruebaDBModel.Carro">
+        <MappingFragment StoreEntitySet="Carro">
+          <ScalarProperty Name="CarroId" ColumnName="CarroId" />
+          <ScalarProperty Name="Placa" ColumnName="Placa" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="MarcaId" ColumnName="MarcaId" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carro_CarWash">
+      <EntityTypeMapping TypeName="pruebaDBModel.Carro_CarWash">
+        <MappingFragment StoreEntitySet="Carro_CarWash">
+          <ScalarProperty Name="CarWashId" ColumnName="CarWashId" />
+          <ScalarProperty Name="CarroId" ColumnName="CarroId" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carro_Servicio">
+      <EntityTypeMapping TypeName="pruebaDBModel.Carro_Servicio">
+        <MappingFragment StoreEntitySet="Carro_Servicio">
+          <ScalarProperty Name="ServicioID" ColumnName="ServicioID" />
+          <ScalarProperty Name="CarroId" ColumnName="CarroId" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FechaHoraIngreso" ColumnName="FechaHoraIngreso" />
+          <ScalarProperty Name="ObservacionesEstado1" ColumnName="ObservacionesEstado1" />
+          <ScalarProperty Name="ObservacionesEstado2" ColumnName="ObservacionesEstado2" />
+          <ScalarProperty Name="ObservacionesEstado3" ColumnName="ObservacionesEstado3" />
+          <ScalarProperty Name="ObservacionesEstado4" ColumnName="ObservacionesEstado4" />
+          <ScalarProperty Name="HoraEgreso" ColumnName="HoraEgreso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="pruebaDBModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+          <ScalarProperty Name="TelefonoCelular" ColumnName="TelefonoCelular" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marca">
+      <EntityTypeMapping TypeName="pruebaDBModel.Marca">
+        <MappingFragment StoreEntitySet="Marca">
+          <ScalarProperty Name="MarcaId" ColumnName="MarcaId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
